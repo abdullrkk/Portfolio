@@ -91,10 +91,11 @@
                                 <Image
                                   src="/images/profile.jpeg"
                                   alt="Profile Picture"
-                                  fill
-                                  sizes="(max-width: 768px) 100vw, 50vw"
+                                  width={600}
+                                  height={600}
+                                  sizes="(max-width: 768px) 90vw, 522px"
                                   className="object-cover"
-                                  priority
+                                  quality={75}
                                 />
                               </div>
                             </div>

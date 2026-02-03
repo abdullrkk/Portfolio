@@ -25,18 +25,7 @@ function Hero() {
         return () => window.removeEventListener('mousemove', handleMouseMove);
     }, [isMobile]);
 
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.2,
-                delayChildren: 0.3,
-            },
-        },
-    };
-
-    const itemVariants = {
+    const statsVariants = {
         hidden: { y: 20, opacity: 0 },
         visible: {
             y: 0,
@@ -71,44 +60,30 @@ function Hero() {
                 />
             </div>
 
-            {/* Content */}
-            <motion.div
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-                className="relative z-10 container mx-auto px-6 text-center"
-            >
-                {/* Main Heading */}
-                <motion.h1
-                    variants={itemVariants}
-                    className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6"
-                >
+            {/* Content - No animations for LCP elements */}
+            <div className="relative z-10 container mx-auto px-6 text-center">
+                {/* Main Heading - NO ANIMATION for LCP */}
+                <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6">
                     <span className="block text-white mb-2">Hi, I&apos;m</span>
                     <span className="block text-gradient animate-gradient-shift bg-[length:200%_auto]">
                         Abdul Rahman
                     </span>
-                </motion.h1>
+                </h1>
 
-                {/* Subtitle */}
-                <motion.div variants={itemVariants} className="mb-8">
+                {/* Subtitle - NO ANIMATION for LCP */}
+                <div className="mb-8">
                     <h2 className="text-2xl md:text-4xl text-gray-300 font-light">
                         Frontend Developer · <span className="text-blue-400 font-semibold">Cloud & Data Engineering Enthusiast</span>
                     </h2>
-                </motion.div>
+                </div>
 
-                {/* Description */}
-                <motion.p
-                    variants={itemVariants}
-                    className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed"
-                >
+                {/* Description - NO ANIMATION for LCP */}
+                <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed">
                     Senior CS student at GIKI passionate about frontend development and cloud engineering. I build responsive web applications with React, TypeScript, and modern frameworks. Currently learning Docker, Kubernetes, and cloud platforms to transition into full-stack/cloud roles.
-                </motion.p>
+                </p>
 
-                {/* CTA Buttons */}
-                <motion.div
-                    variants={itemVariants}
-                    className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-                >
+                {/* CTA Buttons - Minimal animation */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     {/* Primary Button */}
                     <Button variant="gradient" size="lg" className="group" asChild>
                         <a href="#projects">
@@ -129,11 +104,14 @@ function Hero() {
                             View Resume
                         </a>
                     </Button>
-                </motion.div>
+                </div>
 
-                {/* Stats */}
+                {/* Stats - Below the fold, can have animations */}
                 <motion.div
-                    variants={itemVariants}
+                    variants={statsVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
                     className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto"
                 >
                     {[
@@ -154,7 +132,7 @@ function Hero() {
                         </motion.div>
                     ))}
                 </motion.div>
-            </motion.div>
+            </div>
         </section>
     );
 }
