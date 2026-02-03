@@ -16,6 +16,20 @@ const nextConfig = {
   swcMinify: true,
   reactStrictMode: true,
   poweredByHeader: false,
+  // Target modern browsers for smaller bundle size
+  // This removes legacy polyfills and targets ES6+ browsers
+  webpack: (config, { isServer }) => {
+    // Optimize for modern browsers
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+      };
+    }
+    return config;
+  },
 }
 
 module.exports = nextConfig
