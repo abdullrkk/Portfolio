@@ -1,5 +1,24 @@
 import type { Metadata } from "next";
+import { Inter, Poppins } from 'next/font/google';
 import "./globals.css";
+
+// Configure fonts with next/font/google
+// These will be automatically self-hosted by Next.js during build
+// and served from the application, eliminating render-blocking requests
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+  fallback: ['system-ui', 'sans-serif'],
+});
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-poppins',
+  fallback: ['system-ui', 'sans-serif'],
+});
 
 export const metadata: Metadata = {
   title: "Abdul Rahman Khan - Frontend Developer & Cloud Engineering Enthusiast",
@@ -29,16 +48,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className={`dark ${inter.variable} ${poppins.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link 
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:wght@400;500;600;700&display=swap" 
-          rel="stylesheet"
-        />
+        <link rel="preconnect" href="https://api.github.com" />
       </head>
-      <body className="font-sans antialiased" style={{ fontFamily: 'Inter, Poppins, system-ui, sans-serif' }}>
+      <body className={`${inter.className} antialiased`}>
         {children}
       </body>
     </html>
