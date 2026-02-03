@@ -1,23 +1,17 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState, useEffect, memo } from 'react';
-import { ExternalLink, Github, Star, GitFork } from 'lucide-react';
+import { memo } from 'react';
+import { ExternalLink, Github } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
+import GitHubReposGrid from './GitHubReposGrid';
+import type { GitHubRepo } from '@/lib/github';
 
-interface Project {
-  id: number;
-  name: string;
-  description: string;
-  html_url: string;
-  homepage: string | null;
-  stargazers_count: number;
-  forks_count: number;
-  topics: string[];
-  language: string;
+interface ProjectsProps {
+  githubRepos: GitHubRepo[];
 }
 
 // Featured projects (manually curated)
@@ -56,25 +50,11 @@ const featuredProjects = [
   },
 ];
 
-function Projects() {
+function Projects({ githubRepos }: ProjectsProps) {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
-
-  const [githubRepos, setGithubRepos] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Fetch GitHub repos
-    fetch('https://api.github.com/users/abdullrkk/repos?sort=updated&per_page=6')
-        .then((res) => res.json())
-        .then((data: Project[]) => {
-          setGithubRepos(data);
-          setLoading(false);
-        })
-        .catch(() => setLoading(false));
-  }, []);
 
   const containerVariants = {
     hidden: {},
@@ -166,73 +146,16 @@ function Projects() {
             </div>
 
             {/* GitHub Repos Section */}
-            <motion.div variants={itemVariants}>
-              <h3 className="text-3xl font-bold text-white mb-8 text-center">
-                Recent from <span className="text-gradient">GitHub</span>
-              </h3>
+            <GitHubReposGrid repos={githubRepos} inView={inView} />
 
-              {loading ? (
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {[...Array(6)].map((_, i) => (
-                        <div key={i} className="glassmorphism rounded-lg p-6 animate-pulse">
-                          <div className="h-6 bg-slate-700 rounded mb-4" />
-                          <div className="h-4 bg-slate-700 rounded mb-2" />
-                          <div className="h-4 bg-slate-700 rounded w-2/3" />
-                        </div>
-                    ))}
-                  </div>
-              ) : (
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {githubRepos.map((repo) => (
-                        <motion.a
-                            key={repo.id}
-                            href={repo.html_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="glassmorphism rounded-lg p-6 hover:bg-white/5 transition-all group"
-                            whileHover={{ y: -5 }}
-                        >
-                          <div className="flex items-start justify-between mb-3">
-                            <h4 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">
-                              {repo.name}
-                            </h4>
-                            <Github className="w-5 h-5 text-gray-400" />
-                          </div>
-
-                          <p className="text-gray-400 text-sm mb-4 line-clamp-2">
-                            {repo.description || 'No description available'}
-                          </p>
-
-                          <div className="flex items-center gap-4 text-sm text-gray-400">
-                            {repo.language && (
-                                <span className="flex items-center gap-1">
-                          <span className="w-3 h-3 rounded-full bg-blue-400" />
-                                  {repo.language}
-                        </span>
-                            )}
-                            <span className="flex items-center gap-1">
-                        <Star className="w-4 h-4" />
-                              {repo.stargazers_count}
-                      </span>
-                            <span className="flex items-center gap-1">
-                        <GitFork className="w-4 h-4" />
-                              {repo.forks_count}
-                      </span>
-                          </div>
-                        </motion.a>
-                    ))}
-                  </div>
-              )}
-
-              <div className="text-center mt-12">
-                <Button variant="gradient" size="lg" asChild>
-                  <a href="https://github.com/abdullrkk" target="_blank" rel="noopener noreferrer">
-                    View All Projects on GitHub
-                    <ExternalLink className="w-4 h-4 ml-2" />
-                  </a>
-                </Button>
-              </div>
-            </motion.div>
+            <div className="text-center mt-12">
+              <Button variant="gradient" size="lg" asChild>
+                <a href="https://github.com/abdullrkk" target="_blank" rel="noopener noreferrer">
+                  View All Projects on GitHub
+                  <ExternalLink className="w-4 h-4 ml-2" />
+                </a>
+              </Button>
+            </div>
           </motion.div>
         </div>
       </section>

@@ -15,7 +15,7 @@ function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center mb-4">
           {/* Brand */}
           <div>
-            <h3 className="text-xl font-bold text-gradient mb-2">{'Abdul Rahman Khan'}</h3>
+            <p className="text-xl font-bold text-gradient mb-2">{'Abdul Rahman Khan'}</p>
             <p className="text-sm">
               Frontend Engineer passionate about building scalable systems, secure blockchain networks, and modern web applications.
             </p>
@@ -23,7 +23,7 @@ function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-white font-semibold mb-2 text-center md:text-left">Quick Links</h4>
+            <p className="text-white font-semibold mb-2 text-center md:text-left">Quick Links</p>
             <ul className="flex space-x-4">
               {['Home', 'About', 'Skills', 'Projects'].map((item) => (
                 <li key={item}>
@@ -41,10 +41,10 @@ function Footer() {
 
         {/* Social Media Links */}
         <div className="flex justify-center space-x-6 mb-4">
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-500 transition-colors">
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-500 transition-colors" aria-label="Visit my LinkedIn profile">
             <Linkedin className="w-5 h-5" />
           </a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" aria-label="Visit my GitHub profile">
             <Github className="w-5 h-5" />
           </a>
         </div>
@@ -66,6 +66,7 @@ function Footer() {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1 }}
+        aria-label="Scroll to top"
       >
         <ArrowUp className="w-5 h-5" />
       </motion.button>

@@ -65,7 +65,7 @@ function Hero() {
                 {/* Main Heading - NO ANIMATION for LCP */}
                 <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6">
                     <span className="block text-white mb-2">Hi, I&apos;m</span>
-                    <span className="block text-gradient animate-gradient-shift bg-[length:200%_auto]">
+                    <span className="block text-gradient">
                         Abdul Rahman
                     </span>
                 </h1>
