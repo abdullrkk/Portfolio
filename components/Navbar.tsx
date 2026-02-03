@@ -1,11 +1,18 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, useGLTF } from '@react-three/drei';
 import { Menu, X, Github, Linkedin } from 'lucide-react';
 import { Button } from './ui/button';
+import dynamic from 'next/dynamic';
+
+// Lazy load the 3D component with no SSR
+const Logo3D = dynamic(() => import('./Logo3D'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-20 h-20 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg animate-pulse" />
+  ),
+});
 
 const navItems = [
     { name: 'Home', href: '#home' },
@@ -15,20 +22,6 @@ const navItems = [
     { name: 'Experience', href: '#experience' },
     { name: 'Contact', href: '#contact' },
 ];
-
-function LogoModel() {
-    const { scene } = useGLTF('/models/character.glb');
-
-    return (
-        <primitive
-            object={scene}
-            scale={0.7}
-            position={[0, 0, 0]}
-        />
-    );
-}
-
-useGLTF.preload('/models/character.glb');
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -44,21 +37,11 @@ export default function Navbar() {
 
                     {/* 3D Logo */}
                     <motion.div
-                        className="w-20 h-20" // 🔥 Bigger container
+                        className="w-20 h-20"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        <Canvas camera={{ position: [0, 0, 2] }}>
-                            <ambientLight intensity={1} />
-                            <directionalLight position={[2, 2, 5]} intensity={1} />
-                            <OrbitControls
-                                enableZoom={false}
-                                enablePan={false}
-                                autoRotate
-                                autoRotateSpeed={10}
-                            />
-                            <LogoModel />
-                        </Canvas>
+                        <Logo3D />
                     </motion.div>
 
                     {/* Desktop Navigation */}

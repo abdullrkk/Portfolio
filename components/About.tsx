@@ -4,6 +4,8 @@
               import { useInView } from 'react-intersection-observer';
               import { Code2, Palette, Rocket, Users } from 'lucide-react';
               import { Card, CardContent } from './ui/card';
+              import Image from 'next/image';
+              import { memo } from 'react';
 
               const highlights = [
                 {
@@ -28,7 +30,7 @@
                 },
               ];
 
-              export default function About() {
+              function About() {
                 const [ref, inView] = useInView({
                   triggerOnce: true,
                   threshold: 0.1,
@@ -86,10 +88,13 @@
                                 transition={{ duration: 5, repeat: Infinity }}
                               />
                               <div className="relative glassmorphism rounded-2xl h-full w-full overflow-hidden">
-                                <img
+                                <Image
                                   src="/images/profile.jpeg"
                                   alt="Profile Picture"
-                                  className="w-full h-full object-cover"
+                                  fill
+                                  sizes="(max-width: 768px) 100vw, 50vw"
+                                  className="object-cover"
+                                  priority
                                 />
                               </div>
                             </div>
@@ -155,3 +160,5 @@
                   </section>
                 );
               }
+
+              export default memo(About);

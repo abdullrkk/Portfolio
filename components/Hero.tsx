@@ -2,18 +2,31 @@
 
 import { motion } from 'framer-motion';
 import { Button } from './ui/button';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, memo } from 'react';
 
-export default function Hero() {
+// Throttle helper function
+function throttle(func: Function, delay: number) {
+  let lastCall = 0;
+  return function (this: any, ...args: any[]) {
+    const now = Date.now();
+    if (now - lastCall >= delay) {
+      lastCall = now;
+      return func.apply(this, args);
+    }
+  };
+}
+
+function Hero() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
     useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
+        const handleMouseMove = throttle((e: MouseEvent) => {
             setMousePosition({
                 x: (e.clientX / window.innerWidth - 0.5) * 20,
                 y: (e.clientY / window.innerHeight - 0.5) * 20,
             });
-        };
+        }, 100); // Throttle to every 100ms
+        
         window.addEventListener('mousemove', handleMouseMove);
         return () => window.removeEventListener('mousemove', handleMouseMove);
     }, []);
@@ -44,6 +57,7 @@ export default function Hero() {
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <motion.div
                     className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/30 rounded-full blur-3xl"
+                    style={{ willChange: 'transform' }}
                     animate={{
                         x: mousePosition.x,
                         y: mousePosition.y,
@@ -53,6 +67,7 @@ export default function Hero() {
                 />
                 <motion.div
                     className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl"
+                    style={{ willChange: 'transform' }}
                     animate={{
                         x: -mousePosition.x,
                         y: -mousePosition.y,
@@ -149,3 +164,5 @@ export default function Hero() {
         </section>
     );
 }
+
+export default memo(Hero);

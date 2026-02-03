@@ -2,7 +2,7 @@
 
   import { motion } from 'framer-motion';
   import { useInView } from 'react-intersection-observer';
-  import { useState } from 'react';
+  import { useState, memo } from 'react';
   import { Mail, Phone, MapPin, Send, Github, Linkedin } from 'lucide-react';
   import { Button } from './ui/button';
   import { Card, CardContent } from './ui/card';
@@ -43,7 +43,7 @@
     },
   ];
 
-  export default function Contact() {
+  function Contact() {
     const [ref, inView] = useInView({
       triggerOnce: true,
       threshold: 0.1,
@@ -280,3 +280,5 @@
       </section>
     );
   }
+
+  export default memo(Contact);
