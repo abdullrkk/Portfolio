@@ -79,6 +79,7 @@ export default function Navbar() {
                             whileHover={{ scale: 1.2 }}
                             whileTap={{ scale: 0.9 }}
                             className="text-gray-400 hover:text-white transition-colors"
+                            aria-label="Visit my GitHub profile"
                         >
                             <Github className="w-5 h-5" />
                         </motion.a>
@@ -90,6 +91,7 @@ export default function Navbar() {
                             whileHover={{ scale: 1.2 }}
                             whileTap={{ scale: 0.9 }}
                             className="text-gray-400 hover:text-white transition-colors"
+                            aria-label="Visit my LinkedIn profile"
                         >
                             <Linkedin className="w-5 h-5" />
                         </motion.a>
@@ -103,6 +105,7 @@ export default function Navbar() {
                     <button
                         onClick={() => setIsOpen(!isOpen)}
                         className="md:hidden text-white p-2"
+                        aria-label={isOpen ? 'Close menu' : 'Open menu'}
                     >
                         {isOpen ? <X /> : <Menu />}
                     </button>

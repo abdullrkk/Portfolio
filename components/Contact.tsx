@@ -129,7 +129,7 @@
                               <item.icon className="w-6 h-6 text-blue-400" />
                             </div>
                             <div>
-                              <h4 className="text-white font-semibold mb-1">{item.title}</h4>
+                              <p className="text-white font-semibold mb-1">{item.title}</p>
                               {item.link ? (
                                 <a
                                   href={item.link}
@@ -150,7 +150,7 @@
 
                 {/* Social Links */}
                 <div>
-                  <h4 className="text-white font-semibold mb-4">Follow Me</h4>
+                  <p className="text-white font-semibold mb-4">Follow Me</p>
                   <div className="flex gap-4">
                     {socialLinks.map((social, index) => (
                       <motion.a
@@ -161,6 +161,7 @@
                         className={`w-12 h-12 rounded-full bg-slate-800/50 border border-slate-700 flex items-center justify-center text-gray-400 transition-all ${social.color}`}
                         whileHover={{ scale: 1.1, y: -5 }}
                         whileTap={{ scale: 0.95 }}
+                        aria-label={`Visit my ${social.name} profile`}
                       >
                         <social.icon className="w-5 h-5" />
                       </motion.a>

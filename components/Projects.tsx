@@ -193,9 +193,9 @@ function Projects() {
                             whileHover={{ y: -5 }}
                         >
                           <div className="flex items-start justify-between mb-3">
-                            <h4 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">
+                            <p className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">
                               {repo.name}
-                            </h4>
+                            </p>
                             <Github className="w-5 h-5 text-gray-400" />
                           </div>
 

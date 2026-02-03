@@ -151,7 +151,7 @@
                                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 mb-4">
                                     <item.icon className="w-8 h-8 text-blue-400" />
                                   </div>
-                                  <h4 className="text-xl font-semibold text-white mb-2">{item.title}</h4>
+                                  <h3 className="text-xl font-semibold text-white mb-2">{item.title}</h3>
                                   <p className="text-gray-400 text-sm">{item.description}</p>
                                 </CardContent>
                               </Card>

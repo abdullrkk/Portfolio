@@ -50,7 +50,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`dark ${inter.variable} ${poppins.variable}`}>
       <head>
-        <link rel="preconnect" href="https://api.github.com" />
+        <link rel="preconnect" href="https://api.github.com" crossOrigin="" />
       </head>
       <body className={`${inter.className} antialiased`}>
         {children}
