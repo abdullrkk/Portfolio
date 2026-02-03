@@ -25,7 +25,7 @@ function Hero() {
         return () => window.removeEventListener('mousemove', handleMouseMove);
     }, [isMobile]);
 
-    const statsVariants = {
+    const itemVariants = {
         hidden: { y: 20, opacity: 0 },
         visible: {
             y: 0,
@@ -108,7 +108,7 @@ function Hero() {
 
                 {/* Stats - Below the fold, can have animations */}
                 <motion.div
-                    variants={statsVariants}
+                    variants={itemVariants}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-100px" }}

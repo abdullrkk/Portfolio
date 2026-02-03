@@ -93,6 +93,8 @@
                                   alt="Profile Picture"
                                   width={600}
                                   height={600}
+                                  // 522px is the actual rendered width on desktop based on the layout
+                                  // (max-w-md = 28rem = 448px, but with padding renders at ~522px)
                                   sizes="(max-width: 768px) 90vw, 522px"
                                   className="object-cover"
                                   quality={75}
