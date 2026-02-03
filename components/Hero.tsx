@@ -2,21 +2,28 @@
 
 import { motion } from 'framer-motion';
 import { Button } from './ui/button';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo } from 'react';
+import { useIsMobile } from '@/lib/useIsMobile';
+import { throttle } from '@/lib/throttle';
 
-export default function Hero() {
+function Hero() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const isMobile = useIsMobile();
 
     useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
+        // Skip mousemove tracking on mobile for performance
+        if (isMobile) return;
+        
+        const handleMouseMove = throttle((e: MouseEvent) => {
             setMousePosition({
                 x: (e.clientX / window.innerWidth - 0.5) * 20,
                 y: (e.clientY / window.innerHeight - 0.5) * 20,
             });
-        };
+        }, 100); // Throttle to every 100ms
+        
         window.addEventListener('mousemove', handleMouseMove);
         return () => window.removeEventListener('mousemove', handleMouseMove);
-    }, []);
+    }, [isMobile]);
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -44,6 +51,7 @@ export default function Hero() {
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <motion.div
                     className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/30 rounded-full blur-3xl"
+                    style={{ willChange: 'transform' }}
                     animate={{
                         x: mousePosition.x,
                         y: mousePosition.y,
@@ -53,6 +61,7 @@ export default function Hero() {
                 />
                 <motion.div
                     className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl"
+                    style={{ willChange: 'transform' }}
                     animate={{
                         x: -mousePosition.x,
                         y: -mousePosition.y,
@@ -74,7 +83,7 @@ export default function Hero() {
                     variants={itemVariants}
                     className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6"
                 >
-                    <span className="block text-white mb-2">Hi, I'm</span>
+                    <span className="block text-white mb-2">Hi, I&apos;m</span>
                     <span className="block text-gradient animate-gradient-shift bg-[length:200%_auto]">
                         Abdul Rahman
                     </span>
@@ -149,3 +158,5 @@ export default function Hero() {
         </section>
     );
 }
+
+export default memo(Hero);

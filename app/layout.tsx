@@ -1,33 +1,25 @@
 import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const poppins = Poppins({ 
-  weight: ["400", "500", "600", "700"],
-  subsets: ["latin"], 
-  variable: "--font-poppins" 
-});
-
 export const metadata: Metadata = {
-  title: "Your Name - Frontend Developer & UI/UX Designer",
-  description: "Portfolio showcasing cutting-edge web development and stunning UI/UX design work",
-  keywords: ["Frontend Developer", "UI/UX Designer", "React", "Next.js", "TypeScript"],
-  authors: [{ name: "Your Name" }],
-  creator: "Your Name",
+  title: "Abdul Rahman Khan - Frontend Developer & Cloud Engineering Enthusiast",
+  description: "Portfolio showcasing cutting-edge web development, blockchain projects, and cloud engineering skills",
+  keywords: ["Frontend Developer", "Cloud Engineering", "React", "Next.js", "TypeScript", "Blockchain"],
+  authors: [{ name: "Abdul Rahman Khan" }],
+  creator: "Abdul Rahman Khan",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://yourportfolio.com",
-    siteName: "Your Portfolio",
-    title: "Your Name - Frontend Developer & UI/UX Designer",
-    description: "Portfolio showcasing cutting-edge web development and stunning UI/UX design work",
+    siteName: "Abdul Rahman Khan Portfolio",
+    title: "Abdul Rahman Khan - Frontend Developer & Cloud Engineering Enthusiast",
+    description: "Portfolio showcasing cutting-edge web development, blockchain projects, and cloud engineering skills",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Your Name - Frontend Developer",
-    description: "Portfolio showcasing cutting-edge web development and stunning UI/UX design work",
-    creator: "@yourhandle",
+    title: "Abdul Rahman Khan - Frontend Developer",
+    description: "Portfolio showcasing cutting-edge web development and cloud engineering skills",
+    creator: "@abdullrkk",
   },
 };
 
@@ -38,7 +30,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.variable} ${poppins.variable} font-sans antialiased`}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link 
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:wght@400;500;600;700&display=swap" 
+          rel="stylesheet"
+        />
+      </head>
+      <body className="font-sans antialiased" style={{ fontFamily: 'Inter, Poppins, system-ui, sans-serif' }}>
         {children}
       </body>
     </html>

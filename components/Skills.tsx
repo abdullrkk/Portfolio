@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { memo } from 'react';
 
 type Skill = {
   name: string;
@@ -62,7 +63,7 @@ const skills: SkillCategory[] = [
   },
 ];
 
-export default function Skills() {
+function Skills() {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -139,3 +140,5 @@ export default function Skills() {
       </section>
   );
 }
+
+export default memo(Skills);

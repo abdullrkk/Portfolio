@@ -1,11 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { ExternalLink, Github, Star, GitFork } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { useInView } from 'react-intersection-observer';
+import Image from 'next/image';
 
 interface Project {
   id: number;
@@ -55,7 +56,7 @@ const featuredProjects = [
   },
 ];
 
-export default function Projects() {
+function Projects() {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -117,10 +118,13 @@ export default function Projects() {
                   <motion.div key={index} variants={itemVariants}>
                     <Card className="h-full bg-slate-900/50 border-slate-800 overflow-hidden group">
                       <div className="relative overflow-hidden aspect-video">
-                        <img
+                        <Image
                             src={project.image}
                             alt={project.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            className="object-cover transition-transform duration-500 group-hover:scale-110"
+                            loading="lazy"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60" />
                       </div>
@@ -234,3 +238,5 @@ export default function Projects() {
       </section>
   );
 }
+
+export default memo(Projects);

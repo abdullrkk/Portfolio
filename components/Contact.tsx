@@ -2,7 +2,7 @@
 
   import { motion } from 'framer-motion';
   import { useInView } from 'react-intersection-observer';
-  import { useState } from 'react';
+  import { useState, memo } from 'react';
   import { Mail, Phone, MapPin, Send, Github, Linkedin } from 'lucide-react';
   import { Button } from './ui/button';
   import { Card, CardContent } from './ui/card';
@@ -43,7 +43,7 @@
     },
   ];
 
-  export default function Contact() {
+  function Contact() {
     const [ref, inView] = useInView({
       triggerOnce: true,
       threshold: 0.1,
@@ -94,7 +94,7 @@
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6" />
               <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                Have a project in mind? Let's work together to create something amazing!
+                Have a project in mind? Let&apos;s work together to create something amazing!
               </p>
             </div>
 
@@ -107,9 +107,9 @@
                 className="space-y-8"
               >
                 <div>
-                  <h3 className="text-3xl font-bold text-white mb-6">Let's Connect</h3>
+                  <h3 className="text-3xl font-bold text-white mb-6">Let&apos;s Connect</h3>
                   <p className="text-gray-400 leading-relaxed mb-8">
-                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out through any of the following channels.
+                    I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out through any of the following channels.
                   </p>
                 </div>
 
@@ -267,7 +267,7 @@
                           animate={{ opacity: 1, y: 0 }}
                           className="text-green-400 text-sm text-center"
                         >
-                          Thank you! I'll get back to you soon.
+                          Thank you! I&apos;ll get back to you soon.
                         </motion.p>
                       )}
                     </form>
@@ -280,3 +280,5 @@
       </section>
     );
   }
+
+  export default memo(Contact);

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Briefcase, GraduationCap } from 'lucide-react';
+import { memo } from 'react';
 
 const experiences = [
   {
@@ -77,7 +78,7 @@ const experiences = [
   },
 ];
 
-export default function Experience() {
+function Experience() {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -166,3 +167,5 @@ export default function Experience() {
       </section>
   );
 }
+
+export default memo(Experience);
