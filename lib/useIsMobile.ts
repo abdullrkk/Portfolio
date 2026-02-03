@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { throttle } from './throttle';
 
 export function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -17,9 +18,12 @@ export function useIsMobile() {
     };
 
     checkMobile();
-    window.addEventListener('resize', checkMobile);
     
-    return () => window.removeEventListener('resize', checkMobile);
+    // Throttle resize handler to prevent excessive re-renders
+    const throttledCheck = throttle(checkMobile, 100);
+    window.addEventListener('resize', throttledCheck);
+    
+    return () => window.removeEventListener('resize', throttledCheck);
   }, []);
 
   return isMobile;

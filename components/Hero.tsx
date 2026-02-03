@@ -2,20 +2,9 @@
 
 import { motion } from 'framer-motion';
 import { Button } from './ui/button';
-import { useEffect, useState, useCallback, memo } from 'react';
+import { useEffect, useState, memo } from 'react';
 import { useIsMobile } from '@/lib/useIsMobile';
-
-// Throttle helper function
-function throttle(func: Function, delay: number) {
-  let lastCall = 0;
-  return function (this: any, ...args: any[]) {
-    const now = Date.now();
-    if (now - lastCall >= delay) {
-      lastCall = now;
-      return func.apply(this, args);
-    }
-  };
-}
+import { throttle } from '@/lib/throttle';
 
 function Hero() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
