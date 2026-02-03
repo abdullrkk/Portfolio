@@ -16,7 +16,7 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-bold text-gradient mb-2">{'Abdul Rahman Khan'}</h3>
             <p className="text-sm">
-              Cloud & Blockchain Engineer passionate about building scalable systems, secure blockchain networks, and modern web applications.
+              Frontend Engineer passionate about building scalable systems, secure blockchain networks, and modern web applications.
             </p>
           </div>
 

@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { ExternalLink, Github, Star, GitFork, Gamepad2, Building2, Sprout } from 'lucide-react';
+import { ExternalLink, Github, Star, GitFork } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { useInView } from 'react-intersection-observer';
@@ -22,55 +22,36 @@ interface Project {
 // Featured projects (manually curated)
 const featuredProjects = [
   {
-    title: 'AI-Enabled Pharmaceutical Supply Chain',
+    title: 'AI-Enhanced Blockchain Supply Chain (Hyperledger Fabric)',
     description:
-        'Permissioned blockchain network using Hyperledger Fabric with off-chain AI models to ensure pharmaceutical provenance and quality. Features IoT sensor data logging (temp/humidity), automated compliance via smart contracts, and anomaly detection.',
+        'Blockchain-based supply chain system built on Hyperledger Fabric integrating AI and IoT for real-time monitoring and automated compliance. Smart contracts (chaincode) ensure transparency and immutability, while off-chain AI models analyze IoT sensors to maintain agriculture quality standards and optimize logistics workflows.',
     image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80',
-    tech: ['Hyperledger Fabric', 'Go', 'Docker', 'Node.js SDK', 'PostgreSQL', 'IoT', 'AI'],
-    github: 'https://github.com/abdullrkk/hyperledger-supplychain',
-    demo: '#',
+    tech: ['Hyperledger Fabric', 'Smart Contracts', 'Blockchain', 'AI Models', 'IoT', 'Supply Chain Optimization'],
+    github: 'https://github.com/Shgit29/BlockTrack-.git',
+  },
+  {
+    title: 'Chess Analytics & Performance Optimization Platform',
+    description:
+        'End-to-end chess analytics system powered by the Stockfish engine to classify inaccuracies, mistakes, and blunders from PGN files. Includes game phase detection (opening, middlegame, endgame), win-rate analysis by error type, personalized training prescriptions, CSV data pipelines, and an interactive React dashboard for visualization and insights.',
+    image: 'https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=800&q=80',
+    tech: ['Python', 'Stockfish', 'Pandas', 'Data Analysis', 'React', 'Chart.js'],
+    github: 'https://github.com/abdullrkk/chess-analytics-frontend.git',
   },
   {
     title: 'AI-Driven Local Event Finder',
     description:
-        'Crowdsourced local event discovery platform with ML-powered ranking. Features filtered search, interactive event cards with hover previews, pricing tiers, booking modals, and animated cart drawer using Framer Motion.',
+        'Intelligent event discovery platform that provides personalized event recommendations based on user preferences and location. Built with a responsive UI and modular architecture. Features filtering, booking flow, cart system, and scalable frontend design. Designed for real-time data integration and future AI recommendation engine expansion.',
     image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80',
-    tech: ['React', 'Tailwind', 'Context API', 'Framer Motion', 'Google Maps', 'Node.js'],
-    github: 'https://github.com/abdullrkk/event-finder',
-    demo: 'https://event-finder-demo.vercel.app',
+    tech: ['React.js', 'TypeScript', 'Tailwind CSS', 'UI/UX Design'],
+    github: 'https://github.com/abdullrkk/event-finder.git',
   },
   {
-    title: 'Medical Diagnostic Chatbot',
+    title: 'High-Performance SHA-256 Parallel Implementation',
     description:
-        'AI-powered diagnostic assistant using model-based reasoning combined with CSP/backtracking for constraint checking. Provides tailored medical suggestions while avoiding unsafe recommendations through logic validation.',
-    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80',
-    tech: ['Python', 'Flask', 'Model-based AI', 'CSP', 'Constraint Logic', 'Testing'],
-    github: 'https://github.com/abdullrkk/diagnostic-chatbot',
-    demo: '#',
-  },
-];
-
-const notableWork = [
-  {
-    title: 'Unity Game Development @ Mindstorm Studios',
-    description:
-        'Developed gameplay features, optimized performance, and wrote C# scripts for mobile games. Contributed to shipping production-ready game features.',
-    icon: Gamepad2,
-    tags: ['Unity', 'C#', 'Game Development', 'Optimization'],
-  },
-  {
-    title: 'SAP Systems Intern @ Engro Corp',
-    description:
-        'Worked with enterprise SAP systems, assisted in business process automation, and gained exposure to large-scale corporate IT infrastructure.',
-    icon: Building2,
-    tags: ['SAP', 'Enterprise Systems', 'Business Process', 'Automation'],
-  },
-  {
-    title: 'Founder - Save the Beach Initiative',
-    description:
-        'Founded and led environmental cleanup initiative. Organized community events, coordinated volunteers, and achieved measurable impact with 500+ kg waste collected.',
-    icon: Sprout,
-    tags: ['Leadership', 'Environmental', 'Community', 'Impact'],
+        'Parallelized implementation of the SHA-256 cryptographic hashing algorithm using OpenMP, MPI, Pthreads, and CUDA. Includes benchmarking, performance comparison, and scalability analysis across CPU and GPU architectures. Demonstrates deep understanding of cryptography, parallel computing, thread management, and optimization techniques with a web dashboard for live testing.',
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80',
+    tech: ['C/C++', 'OpenMP', 'MPI', 'Pthreads', 'CUDA', 'Cryptography', 'Parallel Computing'],
+    github: 'https://github.com/abdullrkk/Hashing-at-Lightspeed.git',
   },
 ];
 
@@ -131,7 +112,7 @@ export default function Projects() {
             </motion.div>
 
             {/* Featured Projects Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 mb-16">
               {featuredProjects.map((project, index) => (
                   <motion.div key={index} variants={itemVariants}>
                     <Card className="h-full bg-slate-900/50 border-slate-800 overflow-hidden group">
@@ -173,14 +154,6 @@ export default function Projects() {
                               Code
                             </a>
                           </Button>
-                          {project.demo && (
-                              <Button variant="default" size="sm" className="flex-1" asChild>
-                                <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                                  <ExternalLink className="w-4 h-4 mr-2" />
-                                  Demo
-                                </a>
-                              </Button>
-                          )}
                         </div>
                       </CardContent>
                     </Card>
@@ -254,38 +227,6 @@ export default function Projects() {
                     <ExternalLink className="w-4 h-4 ml-2" />
                   </a>
                 </Button>
-              </div>
-            </motion.div>
-
-            {/* Other Notable Work */}
-            <motion.div variants={itemVariants} className="mt-16">
-              <h3 className="text-3xl font-bold text-white mb-8 text-center">
-                Other <span className="text-gradient">Notable Work</span>
-              </h3>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {notableWork.map((work, index) => (
-                    <motion.div
-                        key={index}
-                        className="glassmorphism rounded-lg p-6 hover:bg-white/5 transition-all group"
-                        whileHover={{ y: -5 }}
-                    >
-                      <div className="flex items-center gap-4 mb-4">
-                        <work.icon className="w-8 h-8 text-blue-400" />
-                        <h4 className="text-lg font-semibold text-white">{work.title}</h4>
-                      </div>
-                      <p className="text-gray-400 text-sm mb-4">{work.description}</p>
-                      <div className="flex flex-wrap gap-2">
-                        {work.tags.map((tag) => (
-                            <span
-                                key={tag}
-                                className="px-3 py-1 text-xs rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20"
-                            >
-                        {tag}
-                      </span>
-                        ))}
-                      </div>
-                    </motion.div>
-                ))}
               </div>
             </motion.div>
           </motion.div>

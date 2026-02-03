@@ -1,9 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowDown, Sparkles } from 'lucide-react';
 import { Button } from './ui/button';
-import FloatingShapes from './FloatingShapes';
 import { useEffect, useState } from 'react';
 
 export default function Hero() {
@@ -42,9 +40,6 @@ export default function Hero() {
 
     return (
         <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-            {/* 3D Floating Shapes Background */}
-            <FloatingShapes />
-
             {/* Gradient Orbs */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <motion.div
@@ -74,12 +69,6 @@ export default function Hero() {
                 animate="visible"
                 className="relative z-10 container mx-auto px-6 text-center"
             >
-                {/* Badge */}
-                <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8">
-                    <Sparkles className="w-4 h-4 text-yellow-400" />
-                    <span className="text-sm text-gray-300">Building modern web applications with React while exploring cloud technologies and data systems</span>
-                </motion.div>
-
                 {/* Main Heading */}
                 <motion.h1
                     variants={itemVariants}
