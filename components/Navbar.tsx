@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Github, Linkedin } from 'lucide-react';
 import { Button } from './ui/button';
 import dynamic from 'next/dynamic';
+import { useIsMobile } from '@/lib/useIsMobile';
 
 // Lazy load the 3D component with no SSR
 const Logo3D = dynamic(() => import('./Logo3D'), {
@@ -25,6 +26,7 @@ const navItems = [
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const isMobile = useIsMobile();
 
     return (
         <motion.nav
@@ -35,13 +37,20 @@ export default function Navbar() {
             <div className="container mx-auto px-6 py-4">
                 <div className="flex items-center justify-between">
 
-                    {/* 3D Logo */}
+                    {/* 3D Logo - Only on desktop for performance */}
                     <motion.div
                         className="w-20 h-20"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        <Logo3D />
+                        {isMobile ? (
+                            // Fallback 2D logo for mobile
+                            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg">
+                                <span className="text-2xl font-bold text-gradient">AR</span>
+                            </div>
+                        ) : (
+                            <Logo3D />
+                        )}
                     </motion.div>
 
                     {/* Desktop Navigation */}

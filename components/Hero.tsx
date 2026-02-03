@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Button } from './ui/button';
 import { useEffect, useState, useCallback, memo } from 'react';
+import { useIsMobile } from '@/lib/useIsMobile';
 
 // Throttle helper function
 function throttle(func: Function, delay: number) {
@@ -18,8 +19,12 @@ function throttle(func: Function, delay: number) {
 
 function Hero() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const isMobile = useIsMobile();
 
     useEffect(() => {
+        // Skip mousemove tracking on mobile for performance
+        if (isMobile) return;
+        
         const handleMouseMove = throttle((e: MouseEvent) => {
             setMousePosition({
                 x: (e.clientX / window.innerWidth - 0.5) * 20,
@@ -29,7 +34,7 @@ function Hero() {
         
         window.addEventListener('mousemove', handleMouseMove);
         return () => window.removeEventListener('mousemove', handleMouseMove);
-    }, []);
+    }, [isMobile]);
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -89,7 +94,7 @@ function Hero() {
                     variants={itemVariants}
                     className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6"
                 >
-                    <span className="block text-white mb-2">Hi, I'm</span>
+                    <span className="block text-white mb-2">Hi, I&apos;m</span>
                     <span className="block text-gradient animate-gradient-shift bg-[length:200%_auto]">
                         Abdul Rahman
                     </span>

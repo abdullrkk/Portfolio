@@ -103,13 +103,13 @@
                           {/* Text Content */}
                           <motion.div variants={itemVariants} className="space-y-6">
                             <p className="text-gray-400 leading-relaxed">
-                              I'm Abdul Rahman Khan — a senior Computer Science student at GIKI with strong frontend development skills and a passion for learning cloud technologies. I specialize in React, TypeScript, and modern web frameworks. I build clean, responsive user interfaces and I'm currently expanding my skillset into cloud engineering and backend systems.
+                              I&apos;m Abdul Rahman Khan — a senior Computer Science student at GIKI with strong frontend development skills and a passion for learning cloud technologies. I specialize in React, TypeScript, and modern web frameworks. I build clean, responsive user interfaces and I&apos;m currently expanding my skillset into cloud engineering and backend systems.
                             </p>
                             <p className="text-gray-400 leading-relaxed">
-                              My technical foundation includes data analysis, basic AI/ML concepts, and solid frontend engineering. I've completed internships at Algoryte (Blockchain development) and IDEA (Business Development & Data Analytics), where I gained hands-on experience with Hyperledger Fabric and built data-driven insights using Power BI and NLP. I'm actively learning Docker, Kubernetes, and cloud platforms through hands-on projects and coursework.
+                              My technical foundation includes data analysis, basic AI/ML concepts, and solid frontend engineering. I&apos;ve completed internships at Algoryte (Blockchain development) and IDEA (Business Development & Data Analytics), where I gained hands-on experience with Hyperledger Fabric and built data-driven insights using Power BI and NLP. I&apos;m actively learning Docker, Kubernetes, and cloud platforms through hands-on projects and coursework.
                             </p>
                             <p className="text-gray-400 leading-relaxed">
-                              I founded the environmental initiative "Save the Beach" where I led community events and coordinated teams. Outside of coding, I enjoy reading tech blogs, contributing to open source, and traveling.
+                              I founded the environmental initiative &quot;Save the Beach&quot; where I led community events and coordinated teams. Outside of coding, I enjoy reading tech blogs, contributing to open source, and traveling.
                             </p>
                             <div className="flex flex-wrap gap-3 pt-4">
                               {[
