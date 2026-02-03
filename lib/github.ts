@@ -3,6 +3,9 @@
  * Fetches data on the server to improve performance and reduce client-side JS
  */
 
+// Revalidate cached data every hour (3600 seconds)
+const REVALIDATE_INTERVAL_SECONDS = 3600;
+
 export interface GitHubRepo {
   id: number;
   name: string;
@@ -24,8 +27,7 @@ export async function fetchGitHubRepos(username: string): Promise<GitHubRepo[]> 
     const response = await fetch(
       `https://api.github.com/users/${username}/repos?sort=updated&per_page=6`,
       {
-        // Revalidate every hour
-        next: { revalidate: 3600 },
+        next: { revalidate: REVALIDATE_INTERVAL_SECONDS },
       }
     );
 

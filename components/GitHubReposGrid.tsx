@@ -33,7 +33,6 @@ function GitHubReposGrid({ repos, inView }: GitHubReposGridProps) {
             rel="noopener noreferrer"
             className="glassmorphism rounded-lg p-6 hover:bg-white/5 transition-all group"
             whileHover={{ y: -5 }}
-            aria-label={`View ${repo.name} repository on GitHub`}
           >
             <div className="flex items-start justify-between mb-3">
               <p className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">
