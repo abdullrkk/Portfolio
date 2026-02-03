@@ -2,10 +2,14 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from 'next/font/google';
 import "./globals.css";
 
+// Configure fonts with next/font/google
+// These will be automatically self-hosted by Next.js during build
+// and served from the application, eliminating render-blocking requests
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-inter',
+  fallback: ['system-ui', 'sans-serif'],
 });
 
 const poppins = Poppins({
@@ -13,6 +17,7 @@ const poppins = Poppins({
   weight: ['400', '500', '600', '700'],
   display: 'swap',
   variable: '--font-poppins',
+  fallback: ['system-ui', 'sans-serif'],
 });
 
 export const metadata: Metadata = {
