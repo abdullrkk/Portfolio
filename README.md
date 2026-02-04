@@ -2,7 +2,7 @@
 
 A stunning, high-performance portfolio website built with Next.js, React, TypeScript, Framer Motion, and Three.js. Perfect for showcasing your frontend development and UI/UX skills to recruiters!
 
-![Portfolio Preview](https://via.placeholder.com/1200x600/1e293b/60a5fa?text=Your+Amazing+Portfolio)
+(https://abdullrkk.vercel.app/)
 
 ## ✨ Features
 
@@ -42,7 +42,7 @@ A stunning, high-performance portfolio website built with Next.js, React, TypeSc
 
 ```bash
 # If using Git
-git clone https://github.com/yourusername/portfolio.git
+git clone https://github.com/abdullrkk/portfolio.git
 cd portfolio
 
 # Or simply extract the files to your project folder
@@ -230,25 +230,12 @@ MIT License - feel free to use this for your own portfolio!
 
 Contributions, issues, and feature requests are welcome!
 
-## 💡 Tips for Career Fair
-
-1. **Test on mobile** - Recruiters often use phones
-2. **Fast internet** - Ensure smooth 3D animations
-3. **Business cards** - Add QR code linking to your portfolio
-4. **Practice demo** - Know how to quickly show your best projects
-5. **Backup plan** - Have screenshots ready in case of internet issues
-6. **Custom domain** - Consider buying yourname.dev or similar
-7. **Analytics** - Track visits to see recruiter interest
-
 ## 📞 Support
 
 If you have questions or need help:
 - Open an issue on GitHub
-- Reach out on Twitter/LinkedIn
+- Reach out on LinkedIn
 - Check Next.js documentation
 
 ---
 
-**Made with ❤️ for developers looking to land their dream job!**
-
-Good luck at your career fair! 🚀
